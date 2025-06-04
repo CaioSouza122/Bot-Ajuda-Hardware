@@ -43,4 +43,4 @@ Contribuições são sempre bem-vindas! Se você tiver ideias para novas funcion
 
 🧑‍💻 Autor
 
-Caio Souza** - [@CaioSouza122](https://github.com/CaioSouza122)
+Caio Souza - [@CaioSouza122](https://github.com/CaioSouza122)
