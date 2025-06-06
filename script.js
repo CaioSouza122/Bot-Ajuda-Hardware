@@ -7,8 +7,8 @@ const respostas = {
 };
 
 function addMessage(remetente, texto) {
-  renderMessage(remetente, texto);  // mostra no chat
-  saveToHistory(remetente, texto);  // salva no localStorage
+  renderMessage(remetente, texto);
+  saveToHistory(remetente, texto);
 }
 
 function saveToHistory(remetente, texto) {
@@ -33,11 +33,11 @@ function renderMessage(remetente, texto) {
   chatLog.scrollTop = chatLog.scrollHeight;
 }
 
-
 function handleUserInput() {
   const input = document.getElementById("user-input");
-  const userText = input.value.toLowerCase().trim();
-  if (userText === "") return;
+  const userText = input.value.toLowerCase();
+
+  if (!userText.trim()) return;
 
   addMessage("Você", userText);
 
@@ -59,25 +59,25 @@ function handleUserInput() {
   input.value = "";
 }
 
-document.addEventListener("DOMContentLoaded",document.addEventListener("DOMContentLoaded", function () {
-  // carregar histórico ao iniciar
-  loadChatHistory();
+function clearChat() {
+  const chatLog = document.getElementById("chat-log");
+  chatLog.innerHTML = "";
+  localStorage.removeItem("chatHistory");
+}
 
-  document.getElementById("send-btn").addEventListener("click", handleUserInput);
-  document.getElementById("user-input").addEventListener("keydown", function (event) {
-    if (event.key === "Enter") {
-      handleUserInput();
-    }
-  });
-}));
-function loadChatHistory() {
+// Enviar com ENTER
+document.getElementById("user-input").addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    handleUserInput();
+  }
+});
+function carregarHistorico() {
   const historico = JSON.parse(localStorage.getItem("chatHistory")) || [];
   historico.forEach(mensagem => {
-    renderMessage(mensagem.remetente, mensagem.texto); // só exibe, não salva
+    renderMessage(mensagem.remetente, mensagem.texto);
   });
 }
 
-document.getElementById("clear-btn").addEventListener("click", function () {
-  localStorage.removeItem("chatHistory");
-  document.getElementById("chat-log").innerHTML = "";
-});
+// Executa assim que a página carrega
+window.onload = carregarHistorico;

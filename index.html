@@ -8,10 +8,18 @@
 </head>
 <body>
   <div class="chat-container">
-   <div id="chat-log" class="chat-log"></div>
-    <input type="text" id="user-input" placeholder="Digite seu problema..." />
-    <button id="send-btn">Enviar</button>
-    <button id="clear-btn">Limpar conversa</button>
+    <div id="chat-log" class="chat-log"></div>
+
+<div class="chat-header">
+  <img src="gato-nerd.png" alt="Logo do Lobot" class="logo" />
+  <h1>Lobot</h1>
+</div>
+
+    <div class="input-area">
+      <input type="text" id="user-input" placeholder="Digite seu problema..." />
+      <button onclick="handleUserInput()">Enviar</button>
+      <button onclick="clearChat()">Limpar</button>
+    </div>
   </div>
 
   <script src="script.js"></script>
